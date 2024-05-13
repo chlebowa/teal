@@ -76,7 +76,7 @@ TealAppDriver <- R6::R6Class( # nolint: object_name.
         strict = FALSE
       )
 
-      required_version <- 105
+      required_version <- "105"
 
       testthat::skip_if(
         is.na(chrome_version),
@@ -85,7 +85,7 @@ TealAppDriver <- R6::R6Class( # nolint: object_name.
       testthat::skip_if(
         chrome_version < required_version,
         sprintf(
-          "Chrome version '%s' is not supported, please upgrade to '%d' or higher",
+          "Chrome version '%s' is not supported, please upgrade to '%s' or higher",
           chrome_version,
           required_version
         )
@@ -241,6 +241,41 @@ TealAppDriver <- R6::R6Class( # nolint: object_name.
     get_active_module_output = function(output_id) {
       checkmate::check_string(output_id)
       self$get_value(output = sprintf("%s-%s", self$active_module_ns(), output_id))
+    },
+    #' @description
+    #' Get the output from the module's `teal.widgets::table_with_settings` or `DT::DTOutput` in the `teal` app.
+    #' This function will only access outputs from the name space of the current active teal module.
+    #'
+    #' @param table_id (`character(1)`) The id of the table in the active teal module's name space.
+    #' @param which (integer) If there is more than one table, which should be extracted.
+    #' By default it will look for  a table that is built using `teal.widgets::table_with_settings`.
+    #'
+    #' @return The data.frame with table contents.
+    get_active_module_table_output = function(table_id, which = 1) {
+      checkmate::check_number(which, lower = 1)
+      checkmate::check_string(table_id)
+      table <- self$active_module_element(table_id) %>%
+        self$get_html_rvest() %>%
+        rvest::html_table(fill = TRUE)
+      if (length(table) == 0) {
+        data.frame()
+      } else {
+        table[[which]]
+      }
+    },
+    #' @description
+    #' Get the output from the module's `teal.widgets::plot_with_settings` in the `teal` app.
+    #' This function will only access plots from the name space of the current active teal module.
+    #'
+    #' @param plot_id (`character(1)`) The id of the plot in the active teal module's name space.
+    #'
+    #' @return The `src` attribute as `character(1)` vector.
+    get_active_module_plot_output = function(plot_id) {
+      checkmate::check_string(plot_id)
+      self$get_attr(
+        self$active_module_element(sprintf("%s-plot_main > img", plot_id)),
+        "src"
+      )
     },
     #' @description
     #' Set the input in the module in the `teal` app.
