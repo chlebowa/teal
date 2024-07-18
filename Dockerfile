@@ -1,5 +1,5 @@
 # Fetch base image
-FROM rocker/rstudio:4.3
+FROM rocker/rstudio:4.4
 
 # Set up workspace and copy dependencies
 WORKDIR /workspace
