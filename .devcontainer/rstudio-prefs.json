@@ -7,7 +7,7 @@
 	"initial_working_directory": "/workspaces/teal",
 	"show_hidden_files": true,
 	// personal preferences
-	"defaule_working_directory": "/workspaces",
+	"default_working_directory": "/workspaces",
 	"load_workspace": false,
 	"auto_discover_package_dependencies": false,
 	"insert_native_pipe_operator": true,
