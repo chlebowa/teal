@@ -8,7 +8,7 @@ on:
     paths:
       - DESCRIPTION
       - Dockerfile
-      - .devcontainer
+      - .devcontainer/*
       - .github/workflows/build-docker-image.yml
   # give possibility to run it manually
   workflow_dispatch:
