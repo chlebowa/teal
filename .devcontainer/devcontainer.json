@@ -1,0 +1,30 @@
+{
+	// https://containers.dev/implementors/json_reference/
+	"name": "experimental container teal R 4.4",
+	"image": "ghcr.io/chlebowa/teal:4.4",
+	// env variables
+	"containerEnv": {
+		"ROOT": "true",
+		"PASSWORD": "rstudio",
+		"DISABLE_AUTH": "true"
+	},
+
+	"init": true,
+	"overrideCommand": false, // do not override default docker CMD
+
+	// onCreateCommand: final step at container setup when a dev container is created.
+	// postAttachCommand: runs each time user connect to the Codespace
+	// postCreateCommand: run once the dev container has been assigned to a user for the first time.
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+	"postAttachCommand": "$BROWSER \"https://${CODESPACE_NAME}-8787.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/\"; echo 'To open rstudio in your browser, just type rstudio in the terminal'",
+
+	// RStudio ports
+	"forwardPorts": [8787],
+	"portsAttributes": {
+		"8787": {
+			"label": "Rstudio",
+			"requireLocalPort": true,
+			"onAutoForward": "openBrowser"
+		}
+	}
+}
