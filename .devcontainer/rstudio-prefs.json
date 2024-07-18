@@ -1,8 +1,19 @@
 {
+	// suggested by workflow
 	"save_workspace": "never",
 	"always_save_history": false,
 	"reuse_sessions_for_project_links": true,
 	"posix_terminal_shell": "bash",
-	"initial_working_directory": "/workspaces",
-	"show_hidden_files": true
+	"initial_working_directory": "/workspaces/teal",
+	"show_hidden_files": true,
+	// personal preferences
+	"defaule_working_directory": "/workspaces",
+	"load_workspace": false,
+	"auto_discover_package_dependencies": false,
+	"insert_native_pipe_operator": true,
+	"code_completion": "manual",
+	"code_completion_other": "triggered",
+	"auto_append_newline": true,
+	"strip_trailing_whitespace": true,
+	"syntax_color_console": true
 }
