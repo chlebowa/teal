@@ -8,11 +8,15 @@ COPY ./docker_script.R /workspace/
 
 # Install required system packages
 RUN sudo apt update && sudo apt install \
-  libxml2-dev \
   libcairo2-dev \
   libfontconfig1-dev \
+  libfreetype6-dev \
   libfribidi-dev \
   libharfbuzz-dev \
+  libjpeg-dev \
+  libpng-dev \
+  libtiff5-dev \
+  libxml2-dev \
   zlib1g-dev \
   -y
 
