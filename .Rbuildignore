@@ -46,3 +46,6 @@ coverage.*
 ^.revdeprefs\.yaml$
 ^revdep$
 ^\.covrignore$
+^\.devcontainer$
+^Dockerfile$
+
