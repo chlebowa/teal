@@ -22,7 +22,7 @@ RUN R -e 'options(repos = c("https://cran.r-project.org")); \
         remotes::install_local(path = ".", force = FALSE, dependencies = TRUE, upgrade = FALSE)'
 
 # Remove unneded dependencies
-RUN sudo apt update && sudo apt autoremove -y
+RUN sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 RUN R -s -f ./docker_script.R
 
