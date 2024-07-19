@@ -20,7 +20,7 @@ RUN sudo apt update && sudo apt install \
   zlib1g-dev \
   -y
 
-# Install dependencies
+# Install this branch
 RUN R -e '\
   options(repos = c("https://cran.r-project.org")); \
   install.packages("remotes"); \
