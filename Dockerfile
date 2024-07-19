@@ -21,9 +21,12 @@ RUN sudo apt update && sudo apt install \
   -y
 
 # Install this branch
+# Dependencies installed from Github tu use development versions.
 RUN R -e '\
   options(repos = c("https://cran.r-project.org")); \
   install.packages("remotes"); \
+  remotes::install_github("insightsengineering/teal.widgets"); \
+  remotes::install_github("insightsengineering/teal.reporter"); \
   remotes::install_local(path = ".", force = FALSE, dependencies = TRUE, upgrade = FALSE) \
 '
 
